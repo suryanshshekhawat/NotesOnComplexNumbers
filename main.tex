@@ -1,0 +1,515 @@
+\documentclass[oneside]{book}
+
+\usepackage{amsmath, amsthm, amssymb, amsfonts}
+\usepackage{thmtools}
+\usepackage{graphicx}
+\usepackage{setspace}
+\usepackage{geometry}
+\usepackage{float}
+\usepackage{hyperref}
+\usepackage[utf8]{inputenc}
+\usepackage[english]{babel}
+\usepackage{framed}
+\usepackage[dvipsnames]{xcolor}
+\usepackage{environ}
+\usepackage{tcolorbox}
+\tcbuselibrary{theorems,skins,breakable}
+
+\setstretch{1.2}
+\geometry{
+    textheight=10in,
+    textwidth=7.5in,
+    top=0.5in,
+    headheight=10pt,
+    headsep=10pt,
+    footskip=10pt
+}
+
+% Theorem system and user-defined commands
+\input{theorems.tex}
+\input{commands.tex}
+
+\begin{document}
+
+% Custom inline title instead of \maketitle
+\begin{center}
+    \LARGE \textbf{Notes on Complex Numbers}
+\end{center}
+
+\section*{
+Introduction
+}
+
+\ex{
+When we try to look for roots of the quadratic equation
+\[
+x^2 + 1 = 0
+\]
+we find that it has no real roots ?
+}
+
+\defn{Imaginary Unit}{
+Is an imaginary number which satisfies $i^2 = -1$ i.e., $i = \sqrt{-1}$.  
+}
+
+\fact{
+\[
+i^{4k} = 1 \hspace{0.5em} \forall \hspace{0.5em} k \hspace{0.5em} \in \hspace{0.5em} \mathbf{Z}^{\geq 0}
+\]
+\[
+i^{4k + 1} = i \hspace{0.5em} \forall \hspace{0.5em} k \hspace{0.5em} \in \hspace{0.5em} \mathbf{Z}^{\geq 0}
+\]
+\[
+i^{4k +2} = -1 \hspace{0.5em} \forall \hspace{0.5em} k \hspace{0.5em} \in \hspace{0.5em} \mathbf{Z}^{\geq 0}
+\]
+\[
+i^{4k + 3} = -i \hspace{0.5em} \forall \hspace{0.5em} k \hspace{0.5em} \in \hspace{0.5em} \mathbf{Z}^{\geq 0}
+\]
+}
+
+\ex{
+When we look for roots of $x^2 - 4x + 5 = 0$
+\[
+x = \frac{4 \pm \sqrt{16 - 4(5)}}{2} = \frac{4 \pm \sqrt{-4}}{2} = \frac{4 \pm 2.\sqrt{-1}}{2} = 2 \pm i
+\]
+these two roots are not purely imaginary.
+}
+
+\defn{Complex Number}{
+A complex number is a number that contains 2 parts: a real and an imaginary one. 
+\[
+z = a + bi
+\]
+where a, b $\in$ $\mathbf{R}$ \& i is the imaginary unit.
+\[
+\mathbf{C} = \left\{ a + bi \hspace{0.5em} | \hspace{0.5em} a, b \in \mathbf{R} \text{ \& } i = \sqrt{-1} \right\}.
+\]
+}
+
+\fact{
+1) If a = 0 in z = a + bi, we have the set of imaginary numbers (imaginary unit . real scalars).\newline
+2) If b = 0 in z = a + bi, we have $\mathbf{R}$'s\newline
+\textbf{Notation}: Re(z) = a \& Im(z) = b for z = a + bi.
+}
+
+\defn{Cartesian form of a Complex Number}{A complex number is expressed in the form a + bi is said to be in Cartesian form}
+
+Whether $ax^2 + bx + c$ has real or complex roots depends on the sign of the discriminant: $b^2 - 4ac$, real if $\geq$ 0, complex otherwise.
+
+\section*{Arithmetic in Cartesian Form}
+\subsection*{Addition}
+\[
+z \pm w = (a + bi) \pm (c + di)
+\]
+\[
+z \pm w = (a \pm c) + (b \pm d)i
+\]
+\[
+z \pm w = \left[ Re(z) \pm Re(w) \right] + \left[ Im(b) \pm Im(d) \right]i
+\]
+
+\subsection*{Multiplication}
+\[
+z.w = (a + bi).(c + di)
+\]
+\[
+z.w = ac + adi + bci + bd(i^2)
+\]
+\[
+z.w = ac + (ad + bc)i + bd(-1)
+\]
+\[
+z.w = (ac - bd) + (ad + bc)i
+\]
+
+\subsection*{Division}
+Is tricky as we not yet have a sense of what does $\frac{1}{z}$ for complex number z mean ?
+
+\defn{Complex Conjugate}{The complex conjugate of a number z = a + bi is the complex number defined by $\overline{z}$ = a - bi}
+
+\fact{
+\mathbf{Properties of complex conjugates}
+\begin{itemize}
+    \item $\overline{z \pm w} = \overline{z} \pm \overline{w}$
+    \item $\overline{z.w} = \overline{z}.\overline{w}$
+    \item $\overline{z^{n}} = {\overline{z}}^n$
+    \item If z = a + bi then $z.\overline{z} = (a + bi)(a - bi) = a^2 + b^2$.
+\end{itemize}
+}
+
+\ex{Now, if w $\neq$ 0, then to find $\frac{z}{w}$ we multiply both the numerator \& denominator by the complex conjugate like so,
+\[
+\frac{z}{w} = \frac{z\overline{w}}{w\overline{w}} = \frac{(a + bi)(c - di)}{(c + di)(c - di)} = \frac{ac + bd + (bc - ad)i}{c^2 + d^2} = \frac{(ac + bd)}{c^2 + d^2} + \frac{(bc - ad)i}{c^2 + d^2}.
+\]
+}
+
+\textbf{Note}: This process is analogous to rationalising a fraction where the denominator is a surd.
+
+\subsection*{Equality}
+Two complex numbers in the Cartesian form are equal if and only if their real and imaginary parts are equal,
+
+\[
+\text{If } z = a + bi \text{ \& } w = c + di \rightarrow z = w \iff a = c \text{ \& } b = d. 
+\]
+
+\subsection*{lack of Ordering}
+Given a \& b where a $\neq$ b \& a, b $\in \mathbf{R}$ $\exists$ a trichotomy that a $>$ b or b $<$ a or a = b but only one. Unfortunately, no such statement can be made in regard to z \& w complex numbers. We can only comment on their real parts.
+
+\section*{Complex/Argand plane}
+\begin{figure}[H]
+    \center
+    \includegraphics[scale=0.7]{img/complexplane.png}
+    \caption{the complex/Argand plane}
+\end{figure}
+
+\subsection*{Modulus}
+In the context of real numbers, the modulus is the distance a point has from the origin on the real number line.
+\[
+|x| = 
+\begin{cases}
+    x \text{ if } x > 0 \\ 
+    -x \text{ if } x \leq 0
+\end{cases}
+\]
+In the case of the complex number, the modulus is defined in the same manner.
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{math-notes-template/img/modulus.png}
+    \caption{Modulus in Complex plane}
+    \label{fig:enter-label}
+\end{figure}
+
+\defn{Modulus}{For a complex number z = a + bi, $|z|$ is defined as,
+\[
+|z| = \sqrt{a^2 + b^2}
+\]
+}
+
+\fact{$|z|^2 = z.\overline{z}$}
+
+\fact{
+\textbf{Properties of a modulus}
+\begin{itemize}
+    \item $|z.w| = |z|.|w|$
+    \item $\left|\frac{z}{w}\right| = \frac{|z|}{|w|}$
+    \item $|z + w| \leq |z| + |w|$ (The triangle inequality)
+    \item $|z - w| \geq |z| - |w|$.
+\end{itemize}
+}
+
+\subsection*{Subsets of the Complex Plane}
+
+The modulus can be used to specify concentric subsets in the complex plane.
+
+\ex{
+\{z $\in$ $\mathbf{C}$ | $|z| > 2$\}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.25\linewidth]{math-notes-template/img/subset1.png}
+    \label{fig:enter-label}
+\end{figure}
+}
+
+\ex{
+\{z $\in$ $\mathbf{C}$ | $1 \leq |z| \leq 3$\}
+}
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.30\linewidth]{math-notes-template/img/subset2.png}
+    \label{fig:enter-label}
+\end{figure}
+
+\section*{Standard Polar Form}
+In the cartesian system we use two axes which are perpendicular to each other. We then fix origin \& accept pairs of values which describe how far along to go on each axis. Extrapolating perpendiculars from these points and finding their intersection gives us the location.\newline
+
+There is another way, what if you just fixed the axes \& gaves us the angle to rotate (like a bearing) \& the distance to go at that angle.
+\begin{itemize}
+    \item $r = |z| = \sqrt{a^2 + b^2}$
+    \item $\theta = arg(z)$
+\end{itemize}
+Imagine the complex plane with this configuration:
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.35\linewidth]{math-notes-template/img/polarexplanation.png}
+    \label{fig:enter-label}
+\end{figure}
+then,
+\[
+\tan{\theta} = \frac{b}{a} \text{ \& } arg(z) = \tan^{-1}{\left(\frac{b}{a}\right)}
+\]
+\[
+a = r\cos{\theta} \text{ \& } b = r\sin{\theta}
+\]
+\[
+\implies z = a + bi = r\cos{\theta} + r\sin{\theta}
+\]
+
+\defn{Standard Polar Form}{The standard polar form of a complex number is given by,
+\[
+z = r(\cos{\theta} + i\sin{\theta})
+\]
+where r is the modulus and $\theta$ is the argument.
+}
+\textbf{Note}: When trying to solve problems, remember that the symmetry of "tan()" across quadrant-1 and quadrant-3 as well as across quadrant-2 and quadrant-4 can cause problems.
+\ex{
+\[
+z_1 = 2 + 2i \text{ is in Quadrant 1}
+\]
+\[
+z_2 = -2 - 2i \text{ is in Quadrant 3}
+\]
+\[
+\text{but } \tan{\left( \frac{-2}{-2} \right)} = \tan{\left(\frac{2}{2}\right)} = 1
+\]
+}
+\ex{
+Find the modulus \& argument of 3 + 7i
+\[
+r = \sqrt{2^2 + 7^2} = \sqrt{58}
+\]
+3 + 7i lies in Quadrant-1.
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.2\linewidth]{math-notes-template/img/example3_7i.png}
+    \label{fig:enter-label}
+\end{figure}
+\[
+\tan{\theta} = \frac{7}{3} \rightarrow \theta = \tan^{-1}{\left( \frac{7}{3}\right)}
+\]
+\[
+\implies 3 + 7i = \sqrt{58}\left( cos\left(\tan^{-1}{\frac{7}{3}}\right) + i.\sin{\left( \tan^{-1}{\frac{7}{3}}\right)} \right)
+\]
+\[
+\approx \sqrt{58}(cos(1.17) + i.sin(1.17))
+\]
+}
+
+\ex{Write -29 in polar form\newline
+\[
+-29 = |29|.(cos(\pi) + i.sin(\pi)) = 29.(cos(\pi) + i.\sin(\pi))
+\]}
+
+\ex{
+Convert $8\left( \cos{\left( \frac{-\pi}{6}\right)} + i.\sin{\left( \frac{-\pi}{6}\right)}\right)$ in Cartesian form.
+\[
+8\left( \cos{\left( \frac{-\pi}{6}\right)} + i.\sin{\left( \frac{-\pi}{6}\right)}\right) = 
+8\left( \frac{\sqrt{3}}{2} + i.\frac{1}{2}.\frac{-1}{1}\right) = 4\sqrt{3} - 4i
+\]
+}
+
+\textbf{Note}: $arg(z) = \theta + 2k\pi$ where $k \in \hspace{0.1em} \mathbf{Z}$, that is, we have infinitely many arguments of z.
+
+\ex{
+For z = 1 + i, we have infinitely many valid arguments
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.5\linewidth]{math-notes-template/img/infiniteargs.png}
+    \label{fig:enter-label}
+\end{figure}
+}
+
+\defn{Principal Argument}{The "principal argument" of z is denoted as Arg(z) \& is the unique argument that satisfies:
+\[
+-\pi < Arg(z) \leq \pi
+\]
+}
+
+\thmr{Euler's Formula}{eulers}{
+\[
+e^{i\theta} = \cos{\theta} + i.\sin{\theta}
+\]
+}
+Using this, 
+\[
+z = r(\cos{\theta} + i.\sin{\theta}) = r.e^{i\theta}
+\]
+
+\section*{Polar Exponential Form}
+
+\defn{Polar Exponential Form}{The "Polar Exponential Form" of a complex number z = a + ib is
+\[
+z = re^{i\theta}
+\]
+where $r = \sqrt{a^2 + b^2} \text{ \& } \theta = \arg(z)$}
+
+\subsection*{Arithmetic in Polar Exponential Form}
+\subsubsection*{Multiplication}
+Let $z = re^{i\theta}$ \& $w = se^{i\phi}$, then 
+\[
+zw = rse^{i(\theta + \phi)}
+\]
+\subsubsection*{Division}
+Let $z = re^{i\theta}$ \& $w = se^{i\phi}$, then 
+\[
+\frac{z}{w} = \left(\frac{r}{s}\right)e^{i(\theta - \phi)}
+\]
+
+\thmr{}{}{
+Every non-0 complex number has exactly n distinct nth complex roots.
+}
+
+\subsubsection*{Raising to an integral power}
+\[
+z^n = (re^{i\theta})^n = r^ne^{in\theta}
+\]
+
+\textbf{Note}: If $re^{i\theta} = se^{i\phi}$, then r = s \& $\theta = \phi + 2k\pi \hspace{0.4em} \forall \hspace{0.4em} k \in \mathbf{Z}$
+
+\subsubsection*{Roots of complex numbers}
+\[
+z = e^{i\phi} \rightarrow z = e^{i(\phi + 2k\pi)}
+\]
+\[
+z^{\frac{1}{n}} = e^{i\frac{(\phi + 2k\pi)}{n}}
+\]
+
+\textbf{Note}: The n complex roots are taken by taking n consecutive values of k.
+
+\thmr{De Moivre's Theorem}{}{
+If a complex number has modulus 1 then, 
+\[
+(e^{i\theta})^n = e^{in\theta}
+\]
+Using Euler's formula on both sides of the equation, we get
+\[
+(\cos{\theta} + i.\sin{\theta})^n = \cos{(n\theta)} + i\sin{(n\theta)} \hspace{0.5em} \forall \hspace{0.5em} n \in \mathbf{Z}
+\]
+}
+
+\ex{
+Find all the 5th roots of $-\sqrt{3} - i$, i.e., all z such that $z^5 = -\sqrt{3} - i$
+\[
+|-\sqrt{3} - i| = 2 \hspace{0.5em} \text{\&} \hspace{0.5em} \tan{\left ( \frac{-1}{\sqrt{3}} \right )}
+\]
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[width=0.3\linewidth]{math-notes-template/img/sqrt3minusiota5thpowerexample.png}
+    \label{fig:enter-label}
+\end{figure}
+
+\[
+\therefore -\sqrt{3} - i = 2e^{-i(\frac{5\pi}{6})} = 2e^{-i(\frac{5\pi}{6} + 2k\pi)}
+\]
+Taking the 5th root, we get,
+\[
+z = 2^{1/5}e^{-i(\frac{5\pi}{6} + 2k\pi)/5} = 2^{1/5}e^{-i\left ( \frac{\pi}{6} + \frac{2k\pi}{5} \right )}
+\]
+For k = 0, 1, 2, 3, 4, we will obtain different values of z:
+\[
+\left \{ 2^{1/5}e^{-i(\frac{\pi}{6})}, 2^{1/5}e^{-i(\frac{17\pi}{30})}, 2^{1/5}e^{-i(\frac{29\pi}{30})}, 2^{1/5}e^{-i(\frac{41\pi}{30})}, 2^{1/5}e^{-i(\frac{53\pi}{30})}   \right \}
+\]
+}
+
+\subsection*{Complex Roots of Real Numbers}
+\ex{
+Find the 4th roots of 16
+\[
+2^4 = (-2)^4 = 16
+\]\newline
+-2 and 2 are 4th roots, but,
+\[
+16 = 16e^{i(0 + 2k\pi)} \implies z = 16^{1/4}e^{\frac{i(2k\pi)}{4}} = 2e^{\frac{k\pi}{2}}, k  \hspace{0.5em} \in \hspace{0.5em} \mathbf{Z}
+\]
+\newline
+\[
+k = 0: z = 2
+\]\newline
+\[
+k = 1: z = 2i
+\]\newline
+\[
+k = 2: z = -2
+\]\newline
+\[
+k = 3: z = -2i
+\]\newline
+$\therefore$ 16 has 2 real and 4th roots but 4 complex 4th roots.
+}
+
+\section*{Polynomials}
+\defn{Polynomial Expression}{A polynomial in z is an expression of the form
+\[
+a_nz^n + a_{n-1}z^{n-1} + a_{n-2}z^{n-2} + ... + a_2z^2 + a_1z^1 + a_0z^0
+\]
+where z is a variable and $a_n, a_{n-1}, a_{n-2}, ... , a_2, a_ 1, a_0$ are coefficients.
+}
+
+
+\defn{Polynomial Equation}{A polynomial expression set to 0, we obtain a polynomial equation:
+\[
+a_nz^n + a_{n-1}z^{n-1} + a_{n-2}z^{n-2} + ... + a_2z^2 + a_1z^1 + a_0z^0 = 0
+\]
+where z is a variable and $a_n, a_{n-1}, a_{n-2}, ... , a_2, a_ 1, a_0$ are coefficients.
+}
+
+\textbf{Note}: If $a_n \neq 0$, then polynomial is said to have a degree n.
+
+\defn{Roots of Polynomial Equation}{The roots of the polynomial equation are the numbers z, which satisfy
+\[
+a_nz^n + a_{n-1}z^{n-1} + a_{n-2}z^{n-2} + ... + a_2z^2 + a_1z^1 + a_0z^0 = 0,
+\]
+A polynomial equation of degree n has at most n complex roots.
+}
+
+\textbf{Note}: the previous example of finding 4th roots can be rephrased as finding the roots of the polynomial equation $z^4 - 16 = 0$.\newline
+
+\textbf{Note}: The same root may occur multiple times, that is, with multiplicity greater than 1.
+
+\thmr{}{}{
+If the coefficients in a polynomial equation are all real, then all the complex roots occur in complex conjugate pairs.
+}
+\begin{proof}
+Suppose v is a complex root of p(x), then p(v) = 0
+\[
+p(v) = 0
+\]
+\[
+\overline{p(v)} = \overline{0}
+\]
+\[
+ \overline{a_nv^n + a_{n-1}v^{n-1} + ... + a_1v^1 + a_0} = 0
+\]
+\[
+\overline{a_nv^n} + \overline{a_{n-1}v^{n-1}} + ... + \overline{a_1v^1} + \overline{a_0} = 0
+\]
+\[
+0 = a_n\overline{v^n} + a_{n-1}\overline{v^{n-1}} + ... + a_{1}\overline{v^{1}} + a_0 = 0
+\]
+\[
+ a_n(\overline{v}^n) + a_{n-1}(\overline{v}^{n-1}) + ... + a_1(\overline{v}^1) + a_0 = 0
+\]
+\[
+ p(\overline{v}) = 0
+\]
+\end{proof}
+
+\section*{Sin and Cos in Terms of exponentials}
+\fact{
+\[
+\cos{\theta} = \frac{e^{i\theta} + e^{-i\theta}}{2}
+\]
+\[
+\sin{\theta} = \frac{e^{i\theta} - e^{-i\theta}}{2}
+\]
+$\forall \hspace{0.5em} \theta \hspace{0.5em} \in \hspace{0.5em} \mathbf{R}$
+}
+
+\section*{Miscellaneous}
+\defn{Complex Exponential Function}{
+let z = x + yi $\in \mathbf{C}$, x, y $\in \mathbf{R}$, the Complex Exponential Function is defined as,
+\[
+e^z = e^{x + iy} = e^xe^{iy} = e^x(\cos{y} + i.\sin{y})
+\]
+}
+\textbf{Note}: When z = x + iy, with x, y $\in \mathbf{R}$; $|e^z| = e^x$ and arg($e^z$) = y 
+\thmr{A Theorem of Remarkable Beauty}{}{
+For $\theta = \pi$, Euler's identity becomes,
+\[
+e^{i\pi} + 1 = 0.
+\]
+This theorem relates the 5 most important constants in mathematics: $\pi$, e, $\theta$, 1 and 0.
+}
+\end{document}
